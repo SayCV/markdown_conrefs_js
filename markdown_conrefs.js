@@ -34,8 +34,8 @@ exports.init = function(source, ops) {
     
     source.forEach(function(src) {
         if (src !== undefined && src !== '') {
-            var foundFiles = findit.sync(src);
-                foundFiles.forEach(function(f) {
+            var foundFiles = findit(src);
+                foundFiles.on('file', function(f) {
                 if (options.type) {
                     if (path.extname(f) == options.type) {
                         files.push(path.resolve(f));
